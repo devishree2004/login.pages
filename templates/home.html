@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Student Portal</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f3f6fb;
+            margin: 0;
+        }
+
+        nav {
+            background: #172b4d;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            max-width: 650px;
+            margin: 100px auto;
+            padding: 50px 25px;
+            border-radius: 10px;
+        }
+
+        button {
+            background: #2458a6;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Student Portal</h2>
+
+    <div>
+        <a href="/">Home</a>
+
+        {% if user %}
+            <a href="/dashboard">Dashboard</a>
+
+            <form action="/logout" method="post"
+                  style="display:inline;">
+                <button type="submit">Logout</button>
+            </form>
+
+        {% else %}
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+        {% endif %}
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <h1>Welcome to Student Portal</h1>
+
+    <p>
+        A secure platform to manage your student account.
+    </p>
+
+    {% if user %}
+
+        <h2>Welcome, {{ user.name }}!</h2>
+
+        <p>You are successfully logged in.</p>
+
+        <a href="/dashboard">
+            <button>Go to Dashboard</button>
+        </a>
+
+    {% else %}
+
+        <p>Create your account and access your dashboard.</p>
+
+        <a href="/register">
+            <button>Register</button>
+        </a>
+
+        <a href="/login">
+            <button>Login</button>
+        </a>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
